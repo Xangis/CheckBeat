@@ -1,0 +1,7 @@
+CheckBeat is copyright 2006-2012 Zeta Centauri.
+
+Zeta Centauri accepts no liability for damages, real or imagined, that may be
+caused by the use or misuse of this software.  It has been published in the hope
+that it may be useful.
+
+This application is freeware and may be distributed freely.  The .wav samples included with this program are royalty-free.
