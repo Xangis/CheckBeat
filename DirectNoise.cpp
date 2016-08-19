@@ -465,7 +465,6 @@ BOOL CALLBACK DrumPanelDialog( HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 	OPENFILENAME file;
 	char szFile[MAX_PATH];
 	char szGetFilename[MAX_PATH];
-	WCHAR wszLoadFile[MAX_PATH];
 	HWND TextCtrl;
 	char bpmtext[12];
 	char beats[12];
