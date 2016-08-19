@@ -1,13 +1,22 @@
-#pragma once
+#ifndef _DIRECTNOISE_H_
+#define _DIRECTNOISE_H_
+
+// Used to enable modern control styles. No clue whether this works.
+#pragma comment(linker,"\"/manifestdependency:type='win32' \
+name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 #include "resource.h"
 #ifdef WIN32
 #include "stdafx.h"
 #include "Commdlg.h"
 #define INITGUID
-//#include <dmusici.h>
 #endif
 #define MAX_LOADSTRING 100
+#define NUM_DRUMS 4
+
+#include "SDL.h"
+#include "SDL_mixer.h"
 
 class CheckBeat
 {
@@ -16,12 +25,7 @@ public:
 	~CheckBeat();
 	void Run();
 	DWORD WINAPI Run( void* arg );
-	IDirectMusicLoader8*		_pLoader;
-	IDirectMusicPerformance8*	_pPerformance;
-	IDirectMusicSegment8*		_pSegment1;
-	IDirectMusicSegment8*		_pSegment2;
-	IDirectMusicSegment8*		_pSegment3;
-	IDirectMusicSegment8*		_pSegment4;
+	Mix_Chunk* _sample[NUM_DRUMS];
 	bool done;
 	bool playing;
 	int step; // Keep track of which sequencer step we are on.
@@ -33,3 +37,5 @@ public:
 	LARGE_INTEGER tickspersec;
 	HWND hWnd;
 };
+
+#endif

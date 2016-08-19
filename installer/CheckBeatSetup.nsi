@@ -50,14 +50,6 @@ RequestExecutionLevel admin
  
   !insertmacro MUI_LANGUAGE "English"
 
-
-; The following file is reserved in memory so that we can make
-; a copy later on for DLL registering purposes. This DLL contains
-; COM interfaces that need to be registered with the operating
-; system before they can be used.
-ReserveFile "${NSISDIR}\Plugins\BunndleOfferManager.dll"
-
-
 ; The stuff to install
 Section "CheckBeat"
 
@@ -164,33 +156,10 @@ Section "Uninstall"
 
 SectionEnd
 
-; This function is automatically executed when the installer starts
-Function .onInit
-	; make sure that the plugins directory exists before we access it
-	InitPluginsDir
-	
-	; Extract the reserved DLL file
-	File /oname=$PLUGINSDIR\BunndleOfferManager.reg.dll "${NSISDIR}\Plugins\BunndleOfferManager.dll"
-	
-	; Register the DLL with the operating system so the COM interfaces are known.
-	RegDLL $PLUGINSDIR\BunndleOfferManager.reg.dll
-FunctionEnd
-
-; This function is automatically executed when the installer finishes
-Function .onGUIEnd
-	; Un-register the offer manager plugin with the operating system
-	UnRegDLL $PLUGINSDIR\BunndleOfferManager.reg.dll
-FunctionEnd
-
-Section instfiles
-	BunndleOfferManager::nsisShowAllOffers "DD43D42B-A1DA-4B84-8E01-39BCCA311EE0" 1 512 400 "CheckBeat"
-SectionEnd
-
 Function LaunchProgram
   ExecShell "" "$SMPROGRAMS\Zeta Centauri\CheckBeat\CheckBeat.lnk"
 FunctionEnd
 
 Function finishpageaction
-  ;CreateShortCut "$DESKTOP\CheckBeat.lnk" "$INSTDIR\CheckBeat.exe" "" "" 0
   CreateShortcut "$DESKTOP\CheckBeat.lnk" "$INSTDIR\CheckBeat.exe"
 FunctionEnd
