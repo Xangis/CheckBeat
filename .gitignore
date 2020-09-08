@@ -37,3 +37,7 @@
 *.pdb
 *.lastbuildstate
 *.res
+
+# Visual Studio Files
+*.suo
+ipch/

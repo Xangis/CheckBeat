@@ -6,8 +6,7 @@ WX_CONFIG := wx-config
 PROGRAM = CheckBeat
 
 # Directory containing library portions of code.
-#INCLUDEDIR = /usr/local/include/wx-2.8/
-INCLUDEDIR2 = /usr/include/AL
+INCLUDEDIR = ../AudioFile/
 
 # Object files
 OBJECTS = CheckBeat.o DirectNoise.o
@@ -17,7 +16,7 @@ CXX = $(shell $(WX_CONFIG) --cxx -ggdb)
 .SUFFIXES:	.o .cpp
 
 .cpp.o :
-	$(CXX) -ggdb -c -I$(INCLUDEDIR2) `$(WX_CONFIG) --cxxflags` -o $@ $<
+	$(CXX) -ggdb -c -I$(INCLUDEDIR) `$(WX_CONFIG) --cxxflags` -o $@ $<
 
 all:    $(PROGRAM)
 
